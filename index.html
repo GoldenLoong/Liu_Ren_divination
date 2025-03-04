@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小六壬模拟器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="text">
+            <img class="img" src="static/img/test2.webp" alt="测试图片">
+        </div>
+
+        <div class="button-group">
+            <button onclick="randomDivination()">随机分析</button>
+            <button onclick="timeDivination()">当前时间分析</button>
+            <button onclick="toggleCustomInput()">自定义分析</button>
+        </div>
+
+        
+        <div class="input-group" id="inputBox" style="display: none;">
+            <input type="number" placeholder="请输入第一个参数" id="input1">
+            <input type="number" placeholder="请输入第二个参数" id="input2">
+            <input type="number" placeholder="请输入第三个参数" id="input3">
+            <button onclick="userSelectDivination()">开始分析</button>
+        </div>
+        
+        <div class="result" id="resultBox" style="display: none;">
+            <div id="lunarInfo" style="display: none;"></div>
+            <div id="parameters"></div>
+            <div class="zhanbu1" id="result1Name"></div>
+            <div class="zhanbu2" id="result1Exp"></div>
+            <div class="zhanbu1" id="result2Name"></div>
+            <div class="zhanbu2" id="result2Exp"></div>
+            <div class="zhanbu1" id="result3Name"></div>
+            <div class="zhanbu2" id="result3Exp"></div>
+            <div class="pici1">综合建议：</div>
+            <div class="pici2" id="finalExp"></div>
+        </div>
+
+        <button onclick="toggleCulturalInfo()">查看文化背景</button>
+
+        <div class="body" id="culturalInfo" style="display: none;">
+            <div class="title1">简介</div>
+            <div class="text1">
+                小六壬是一种古老的预测术。它因操作简便且实用，被很多人所喜爱。
+            </div>
+            <div class="text1">
+                其主要用途有两个方面：一是择吉，也就是挑选吉日吉时；二是应事，即预测即将做的事情是否顺利等。
+            </div>
+            <div class="text1">
+                在使用小六壬进行预测时，需要遵循"不急不占，无事不占，不动不占"这一原则。
+            </div>
+
+            <div class="title1">历史源流</div>
+            <div class="text1">
+                小六壬占卜术起源于唐代历算家李淳风创立的 "六壬时课"。
+            </div>
+            <div class="text1">
+                到明朝，刘伯温在《百战奇略》中将其作为辅助决策工具。
+            </div>
+            <div class="text1">
+                小六壬曾在元朝还传至日本，演变成孔明的六曜星。
+            </div>
+
+            <div class="title1">名称由来</div>
+            <div class="text1">
+                在古代干支纪时系统中，天干 "壬" 象征阳水，代表万物起始与生命孕育，五行以水为先。
+            </div>
+            <div class="text1">
+                在六十甲子循环中，壬干对应壬申、壬午、壬辰、壬寅、壬子、壬戌六个组合，故称 "六壬"。
+            </div>
+            <div class="text1">
+                为与原来的六壬占法（大六壬）区别，李淳风以月日时辰于手掌上起课的占卜法称为 "小六壬"。
+            </div>
+
+            <div class="title1">基本要素</div>
+            
+            <div class="title2">六神</div>
+            <div class="text2">
+                大安、留连、速喜、赤口、小吉、空亡
+            </div>
+
+            <div class="title2">掌诀定位</div>
+            <div class="text2">
+                <img class="img" src="static/img/zhangjue.webp" alt="传统推演手势示意图">
+            </div>
+            <div class="text2">
+                大安在食指根部；留连在食指指尖；
+            </div>
+            <div class="text2">
+                速喜在中指指尖；赤口在无名指指尖；
+            </div>
+            <div class="text2">
+                小吉在无名指根部；空亡在中指根部。
+            </div>
+
+            <div class="title1">推算方法</div>
+            <div class="title2">掐算顺序</div>
+            <div class="text2">
+                首次掐算，以 "大安" 为起点，按大安、留连、速喜、赤口、小吉、空亡的六神次序数，算得起始宫位。
+            </div>
+            <div class="text2">
+                第二次掐算，以起始宫位为起点，仍旧按大安、留连、速喜、赤口、小吉、空亡的六神次序数，算得出中间宫位。
+            </div>
+            <div class="text2">
+                最后一次掐算，以中间宫位为起点，仍旧按大安、留连、速喜、赤口、小吉、空亡的六神次序数，算得出结果宫位。
+            </div>
+            <div class="text2">
+                起始宫位、中间宫位、结果宫位，即为所求事情的开始、发展、结果。
+            </div>
+
+            <div class="title2">掐算数字的由来</div>
+            <div class="text2">
+                可按农历的月、日、时，求出事情的发展、变化、结果。
+            </div>
+            <div class="text2">
+                也可心血来潮时，随心得出三个随机数，求出事情的发展、变化、结果。
+            </div>
+
+            <div class="title2">示例</div>
+            <div class="text2">
+                如：农历三月初三，寅时，为3-3-3。
+            </div>
+            <div class="text2">
+                第一次从大安开始掐算，3为速喜；
+            </div>
+            <div class="text2">
+                第二次从速喜开始掐算，3为小吉；
+            </div>
+            <div class="text2">
+                第三次从小吉开始掐算，3为大安。
+            </div>
+            <div class="text2">
+                所测事情的开始、发展、结果为：速喜-小吉-大安。
+            </div>
+
+            <div class="title1">吉凶判断</div>
+            <div class="text1">
+                落在大安、速喜、小吉位置视为吉祥；
+            </div>
+            <div class="text1">
+                落在留连、赤口、空亡位置视为不吉。
+            </div>
+
+            <div class="title1">宫位详解</div>
+            <div class="title2">大安</div>
+            <div class="text2">
+                身不动时，属木青龙，谋事主一、五、七。
+            </div>
+            <div class="text2">
+                断日：大安事事昌，求谋在坤方，失物去不远，宅舍保安康，行人身未动，病者主无妨，将军回田野，仔细与推详。
+            </div>
+
+            <div class="title2">留连</div>
+            <div class="text2">
+                卒未归时，属水玄武，凡谋事主二、八、十。
+            </div>
+            <div class="text2">
+                断曰：留连事难成，求谋日未明，官事只宜缓，去者未回程，失物南方见，急讨方称心，更须防口舌，人口且平平。
+            </div>
+
+            <div class="title2">速喜</div>
+            <div class="text2">
+                人便至时，属火朱雀，凡谋事立三、六、九。
+            </div>
+            <div class="text2">
+                断曰：速喜喜来临，求财向南行，失物申未午，逢人路上寻，官事有福德，病者无祸侵，田定六畜吉，行人有信音。
+            </div>
+
+            <div class="title2">赤口</div>
+            <div class="text2">
+                官事凶时，属金白虎，凡谋事主四、七、十。
+            </div>
+            <div class="text2">
+                断日：赤日主口舌，官非切要防，失物急去寻，行人有惊慌，鸡犬多作怪，病者出西方，更须防咒诅，恐怕染瘟癀[huáng]。
+            </div>
+
+            <div class="title2">小吉</div>
+            <div class="text2">
+                人来喜时，属木六合，凡谋事主一、五、七。
+            </div>
+            <div class="text2">
+                断曰：小吉最吉昌，路上好商量，阴人来报喜，失物在坤方，行人立便至，交关甚是强，凡事皆和合，病者祷上苍。
+            </div>
+
+            <div class="title2">空亡</div>
+            <div class="text2">
+                信音稀时，属土勾陈，凡谋事主一、五、七。
+            </div>
+            <div class="text2">
+                断曰：空亡事不长，阴人小乖张，求财无利益，行人有灾殃，失物寻不见，官事有刑场，病人逢暗鬼，禳[ráng]解保安康。
+            </div>
+
+        </div>
+        
+        <div class="footer">
+            郑重声明：本程序所有内容均基于历史文献整理，仅供传统文化研究交流，不涉及任何形式的预测咨询服务，不作为任何决策依据。
+        </div>
+    </div>
+
+    <script src="utils/divinationConfig.js"></script>
+    <script src="./utils/chinese_lunar_calendar.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
