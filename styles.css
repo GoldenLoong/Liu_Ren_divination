@@ -33,7 +33,7 @@ body {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #990000;
     color: white;
     padding: 12px 24px;
     border: none;
@@ -47,7 +47,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #660000;
 }
 
 .button-group {
