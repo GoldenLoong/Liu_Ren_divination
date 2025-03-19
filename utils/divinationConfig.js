@@ -3,27 +3,27 @@ const divinationConfig = {
     results: [
         {
             name: '大安',
-            explanation: '代表平安，事情发展顺利，可以放心进行。'
+            explanation: '好运,代表平安，事情发展顺利，可以放心进行。'
         },
         {
             name: '留连',
-            explanation: '表示徘徊不定，事情可能有所延迟，需要耐心等待。'
+            explanation: '坏运,表示徘徊不定，事情可能有所延迟，需要耐心等待。'
         },
         {
             name: '速喜',
-            explanation: '代表好消息即将到来，事情进展迅速。'
+            explanation: '好运,代表好消息即将到来，事情进展迅速。'
         },
         {
             name: '赤口',
-            explanation: '提示需要谨慎，可能遇到口舌是非。'
+            explanation: '坏运,提示需要谨慎，可能遇到口舌是非。'
         },
         {
             name: '小吉',
-            explanation: '表示小有收获，事情略有起色。'
+            explanation: '好运,表示小有收获，事情略有起色。'
         },
         {
             name: '空亡',
-            explanation: '意味着暂时没有结果，需要等待时机。'
+            explanation: '坏运,意味着暂时没有结果，需要等待时机。'
         }
     ],
 
@@ -43,21 +43,21 @@ const divinationConfig = {
 
         // 判断整体趋势
         if (index1 === 0 || index2 === 0 || index3 === 0) { // 有大安
-            explanation += '整体来看，事情发展趋势平稳';
+            explanation += '整体来看，事情发展较好,趋势平稳。';
         } else if (index1 === 2 || index2 === 2 || index3 === 2) { // 有速喜
-            explanation += '整体来看，事情发展较快';
+            explanation += '整体来看，事情发展较好,变化很快。';
         } else {
-            explanation += '整体来看，事情发展需要耐心';
+            explanation += '整体来看，事情发展需要耐心。';
         }
 
         // 根据起始状态给出建议
-        explanation += '。从起始来看，' + this.getAdvice(index1);
+        explanation += '\n    从起始来看，' + this.getAdvice(index1);
 
         // 根据发展状态补充建议
-        explanation += '。在发展过程中，' + this.getAdvice(index2);
+        explanation += '\n    在发展过程中，' + this.getAdvice(index2);
 
         // 根据结果状态总结
-        explanation += '。最终结果，' + this.getAdvice(index3);
+        explanation += '\n    最终结果，' + this.getAdvice(index3);
 
         return explanation;
     },

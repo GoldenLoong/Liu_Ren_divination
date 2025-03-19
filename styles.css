@@ -69,16 +69,28 @@ button:hover {
 }
 
 .input-group button {
-    margin: 10px auto;
+
+    margin-top: 34px;
+    margin-bottom: 34px; 
 }
 
 input {
     padding: 12px;
     border: 1px solid #ddd;
+
+    cursor: pointer;
+    white-space: nowrap;
+
+    display: block;
+    
+
+    margin-left: 60px;
+    margin-top: 10px;
+    margin-bottom: 20px;  
     border-radius: 4px;
     font-size: 16px;
     width: 60%;
-    margin-bottom: 10px;
+
     max-width: 300px;
 }
 
@@ -114,6 +126,8 @@ input {
     padding: 10px;
     background-color: #ecf0f1;
     border-radius: 4px;
+    word-break: break-all;
+    white-space: pre-line;
 }
 
 .title1 {
